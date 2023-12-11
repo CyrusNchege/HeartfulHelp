@@ -1,7 +1,28 @@
 {% extends 'base.html'%}
 
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 {% block content %}
 
-from block
+<div class="row" style="background-color: #ECF4D6; height: 80vh; padding: 30px;  width: 100%;">
+    <div class="col-md-6 ">
+        <div class="landing">
+        <h1>
+            Start a fundraise with us!!
+        </h1> 
+        <p>To support a cause, you can start a fundraise with us and we will give a platform to raise funds for your cause.</p>
 
+        <a href="{% url 'cause_create' %}" class="btn btn-primary btn-lg">Create</a>
+        </div>
+
+        
+
+    </div>
+
+    <div class="col-md-6 ">
+        <img class="img-fluid" src="{%static 'images/back.webp'%}" alt="" srcset="">
+    </div>
+
+</div>
 {% endblock %}
