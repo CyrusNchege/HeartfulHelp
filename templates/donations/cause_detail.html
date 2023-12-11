@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2>Cause Details</h2>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <img src="{{ cause.image.url }}" class="card-img-top img-fluid" alt="{{ cause.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ cause.title }}</h5>
+            <p class="card-text">{{ cause.description }}</p>
+            <p class="card-text"><strong>Goal:</strong> Ksh{{ cause.goal }}</p>
+            <p class="card-text"><strong>Current Amount:</strong> Ksh{{ cause.current_amount }}</p>
+            <p class="card-text"><strong>Account Number:</strong> {{ cause.account_number }}</p>
+          </div>
+          <div class="card-footer bg-transparent border-primary">
+            <a href="" class="btn btn-primary btn-block">Donate</a>
+            <a href="{% url 'causes_list' %}" class="btn btn-outline-primary btn-block">Back to List</a>
+            <a href="{% url 'cause_edit' pk=cause.pk %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url 'cause_delete' pk=cause.pk %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

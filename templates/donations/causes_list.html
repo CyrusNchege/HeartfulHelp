@@ -18,6 +18,12 @@
                         <p class="card-text"><strong>Current Amount:</strong> Ksh{{ cause.current_amount }}</p>
                         <p class="card-text"><strong>Account Number:</strong> {{ cause.account_number }}</p>
                     </div>
+                    <div class="card-footer bg-transparent border-primary">
+                        <a href="" class="btn btn-primary btn-block">Donate</a>
+                        <a href="{% url 'cause_detail' pk=cause.pk %}" class="btn btn-outline-primary btn-block">View Details</a>
+                        <a href="{% url 'cause_create' %}" class="btn btn-success">Create</a>
+                    </div>
+                    
                 </div>
 
             </div>

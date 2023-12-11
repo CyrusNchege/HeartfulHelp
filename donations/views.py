@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from django.shortcuts import render, redirect
@@ -30,7 +30,8 @@ def cause_create(request):
     return render(request, 'donations/cause_form.html', {'form': form})
 
 def cause_edit(request, pk):
-    cause = FundraiseCause.objects.get(pk=pk)
+    cause = get_object_or_404(FundraiseCause, pk=pk)
+    
     if request.method == 'POST':
         form = FundraiseCauseForm(request.POST, request.FILES, instance=cause)
         if form.is_valid():
@@ -38,6 +39,7 @@ def cause_edit(request, pk):
             return redirect('cause_detail', pk=cause.pk)
     else:
         form = FundraiseCauseForm(instance=cause)
+
     return render(request, 'donations/cause_form.html', {'form': form})
 
 def cause_delete(request, pk):
