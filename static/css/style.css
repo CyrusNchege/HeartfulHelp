@@ -6,9 +6,24 @@
 
 body {
     font-family: 'Lato', sans-serif;
+    
+    
 }
 
 .info {
-    background-color: #112D4E;
+    background-color: #265073;
     padding: 20px 0;
+    color: #fff;
+}
+
+.landing{
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    
+    
 }
