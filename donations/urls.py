@@ -12,6 +12,6 @@ urlpatterns = [
     path('causes/new/', cause_create, name='cause_create'),
     path('causes/<int:pk>/edit/', cause_edit, name='cause_edit'),
     path('causes/<int:pk>/delete/', cause_delete, name='cause_delete'),
-    path('causes/<int:pk>/donations/new/', donation_create, name='donation_create'),
+    path('causes/<int:pk>/create_donation', donation_create, name='donation_create'),
 ]
 

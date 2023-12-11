@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2>{{ cause.title }}</h2>
+    <p>{{cause.description}}</p>
+
+
+
+    <h3>Donations</h3>
+    <ul>
+      {% for donation in donations %}
+        <li>{{ donation.name }} donated Ksh{{ donation.amount }}</li>
+      {% endfor %}
+    </ul>
+
+    <h3>Make a Donation</h3>
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Donate</button>
+{% endblock %}
