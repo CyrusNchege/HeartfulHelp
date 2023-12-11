@@ -11,6 +11,6 @@ class FundraiseCauseForm(forms.ModelForm):
 class DonationForm(forms.ModelForm):
     class Meta:
         model = Donation
-        fields = ['name', 'email', 'amount', 'cause']
+        fields = ['name', 'email', 'amount']
 
         
