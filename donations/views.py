@@ -40,7 +40,7 @@ def cause_edit(request, pk):
     else:
         form = FundraiseCauseForm(instance=cause)
 
-    return render(request, 'donations/cause_form.html', {'form': form})
+    return render(request, 'donations/update_cause.html', {'form': form})
 
 def cause_delete(request, pk):
     FundraiseCause.objects.get(id=pk).delete()
