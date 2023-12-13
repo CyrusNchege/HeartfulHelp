@@ -27,5 +27,11 @@
       </div>
     {% endfor %}
   {% endif %}
+
+  {% load socialaccount %}
+  <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Login with Google</a>
+
+  
+
 </div>
 {% endblock %}
