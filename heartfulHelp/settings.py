@@ -143,25 +143,6 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': os.getenv("GOOGLE_CLIENT_ID"),
-            'secret': os.getenv("GOOGLE_SECRET"),
-            'key': ''
-        },
-        
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
-
 SOCIALACCOUNT_AUTO_SIGNUP = True 
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none' 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -171,3 +152,33 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'  # To be changed
+
+"""
+For the below, I thought I needed to add the following to the settings.py file:
+but instead I added the client ID and secret to the social applications in the admin panel
+
+I will look into this more later to see what is best practice
+"""
+
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': os.getenv("GOOGLE_CLIENT_ID"),
+#             'secret': os.getenv("GOOGLE_SECRET"),
+#             'key': ''
+#         },
+        
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         }
+#     }
+# }
+
+
+
+
