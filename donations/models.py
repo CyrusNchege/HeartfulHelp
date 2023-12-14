@@ -24,6 +24,7 @@ class Donation(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     amount = models.IntegerField()
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
     cause = models.ForeignKey(FundraiseCause, on_delete=models.CASCADE, related_name='donations')
 
     def __str__(self):

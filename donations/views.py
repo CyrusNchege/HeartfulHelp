@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render, redirect
 from .models import FundraiseCause, Donation
 from .forms import FundraiseCauseForm, DonationForm
+from .mpesa import initiate_stk_push
 
 def home(request):
     return render(request, 'home.html')
@@ -46,6 +47,7 @@ def cause_delete(request, pk):
     FundraiseCause.objects.get(id=pk).delete()
     return redirect('causes_list')
 
+
 def donation_create(request, pk):
     cause = FundraiseCause.objects.get(id=pk)
     if request.method == 'POST':
@@ -56,7 +58,13 @@ def donation_create(request, pk):
             donation.save()
             cause.current_amount += donation.amount
             cause.save()
+            phone_number= form.cleaned_data['phone_number']
+            amount = form.cleaned_data['amount']
+            
+            response = initiate_stk_push(phone_number, amount)
+            print(response)
             return redirect('cause_detail', pk=cause.pk)
     else:
         form = DonationForm()
     return render(request, 'donations/donation_form.html', {'form': form})
+
