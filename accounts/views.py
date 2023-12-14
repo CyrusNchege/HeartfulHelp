@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm, CustomUserAuthenticationForm
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -21,3 +22,7 @@ def login (request):
     else:
         form = CustomUserAuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
