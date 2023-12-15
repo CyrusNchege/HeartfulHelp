@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm, CustomUserAuthenticationForm
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -14,11 +14,18 @@ def register (request):
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
-def login (request):
+def loginpage (request):
     if request.method == 'POST':
         form = CustomUserAuthenticationForm(data=request.POST)
         if form.is_valid():
-            return redirect('home')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                form.add_error(None, 'Invalid username or password')
     else:
         form = CustomUserAuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
