@@ -7,7 +7,7 @@ from .views import (home,
 urlpatterns = [
     path('', home, name='home'),
     path('about/', about, name='about'),
-    path('causes/', causes_list, name='CC'),
+    path('causes/', causes_list, name='causes_list'),
     path('causes/<int:pk>/', cause_detail, name='cause_detail'),
     path('causes/new/', cause_create, name='cause_create'),
     path('causes/<int:pk>/edit/', cause_edit, name='cause_edit'),
