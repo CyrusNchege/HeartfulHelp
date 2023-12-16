@@ -151,7 +151,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'  # To be changed
+LOGIN_REDIRECT_URL = 'dashboard'  # To be changed
 
 """
 For the below, I thought I needed to add the following to the settings.py file:
