@@ -33,3 +33,7 @@ def loginpage (request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def dashboard(request):
+
+    return render(request, 'accounts/dashboard.html')
