@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm, CustomUserAuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -39,6 +40,7 @@ def logout_view(request):
     messages.success(request, 'Successfully logged out')
     return redirect('login')
 
+@login_required(login_url='login')
 def dashboard(request):
 
     return render(request, 'accounts/dashboard.html')
