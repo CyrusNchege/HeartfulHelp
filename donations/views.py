@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from .models import FundraiseCause, Donation
 from .forms import FundraiseCauseForm, DonationForm
 from .mpesa import initiate_stk_push
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'home.html')
@@ -20,6 +21,7 @@ def cause_detail(request, pk):
     cause = FundraiseCause.objects.get(id=pk)
     return render(request, 'donations/cause_detail.html', {'cause': cause})
 
+@login_required(login_url='login')
 def cause_create(request):
     if request.method == 'POST':
         form = FundraiseCauseForm(request.POST, request.FILES)
@@ -30,6 +32,7 @@ def cause_create(request):
         form = FundraiseCauseForm()
     return render(request, 'donations/cause_form.html', {'form': form})
 
+@login_required(login_url='login')
 def cause_edit(request, pk):
     cause = get_object_or_404(FundraiseCause, pk=pk)
     
@@ -43,6 +46,7 @@ def cause_edit(request, pk):
 
     return render(request, 'donations/update_cause.html', {'form': form})
 
+@login_required(login_url='login')
 def cause_delete(request, pk):
     FundraiseCause.objects.get(id=pk).delete()
     return redirect('causes_list')

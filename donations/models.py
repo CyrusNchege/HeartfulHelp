@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from accounts.models import CustomUser
 
 # Create your models here.
 
@@ -10,6 +11,8 @@ class FundraiseCause(models.Model):
     current_amount = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     account_number = models.IntegerField(null=False, blank=False)
     image = models.ImageField( upload_to='cause_images', null=True, blank=True)
+    creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'creator')
+
                               
     def save (self, *args, **kwargs):
         if self.image is not None:
