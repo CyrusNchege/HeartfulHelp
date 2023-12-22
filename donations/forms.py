@@ -4,7 +4,7 @@ from .models import FundraiseCause, Donation
 class FundraiseCauseForm(forms.ModelForm):
     class Meta:
         model = FundraiseCause
-        fields =  ['title', 'description', 'goal', 'account_number',  'image'] 
+        fields =  ['title', 'description', 'goal', 'account_number',  'image',] 
         #current_amount is not included because it is automatically set and 
         #should not be set by the user
 

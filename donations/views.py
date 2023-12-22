@@ -17,6 +17,12 @@ def causes_list(request):
     causes = FundraiseCause.objects.all()
     return render(request, 'donations/causes_list.html', {'causes': causes})
 
+@login_required(login_url='login')
+def causes(request):
+    causes = FundraiseCause.objects.all()
+    return render(request, 'donations/causes.html', {'causes': causes})
+
+
 def cause_detail(request, pk):
     cause = FundraiseCause.objects.get(id=pk)
     return render(request, 'donations/cause_detail.html', {'cause': cause})
@@ -26,7 +32,9 @@ def cause_create(request):
     if request.method == 'POST':
         form = FundraiseCauseForm(request.POST, request.FILES)
         if form.is_valid():
-            cause = form.save()
+            cause = form.save(commit=False)
+            cause.creator = request.user
+            cause.save()
             return redirect('cause_detail', pk=cause.pk)
     else:
         form = FundraiseCauseForm()
@@ -51,7 +59,7 @@ def cause_delete(request, pk):
     FundraiseCause.objects.get(id=pk).delete()
     return redirect('causes_list')
 
-
+@login_required(login_url='login')
 def donation_create(request, pk):
     cause = FundraiseCause.objects.get(id=pk)
     if request.method == 'POST':
