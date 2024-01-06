@@ -19,6 +19,7 @@ jobs:
 
               - name: Deploy to AWS EC2
                 run: |
+                
                  ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /home/ubuntu/HeartfulHelp && git pull && source /home/ubuntu/HeartfulHelp/env/bin/activate && pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && sudo supervisorctl restart all"
 
           
