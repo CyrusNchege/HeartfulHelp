@@ -3,33 +3,31 @@
 name: "Deploy to AWS"
 
 on:
-    push:
-        branches: [ main ]
     pull_request:
         branches: [ main ]
 
 
 jobs:
-            build:
-              runs-on: ubuntu-latest
-          
-              steps:
-              - name: Checkout
-                uses: actions/checkout@v2
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-              - name: Deploy to AWS EC2
-                run: |
-                  set -e  
-                  ssh -i "${{ secrets.SSH_PRIVATE_KEY }}" "${{ secrets.USERNAME }}@${{ secrets.HOST }}" << 'EOF'
-                    cd /home/ubuntu/HeartfulHelp
-                    git pull
-                    source env/bin/activate
-                    pip install -r requirements.txt
-                    python manage.py migrate
-                    python manage.py collectstatic --noinput
-                    sudo systemctl restart nginx
-                    sudo supervisorctl restart all
-                  EOF
-                  
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+          script: |
+            cd /home/ubuntu/HeartfulHelp
+            git pull
+            source env/bin/activate
+            pip install -r requirements.txt
+            python manage.py migrate
+            python manage.py collectstatic --noinput
+            sudo systemctl restart nginx
+            sudo supervisorctl restart all
             
-          
