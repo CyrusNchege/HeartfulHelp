@@ -20,8 +20,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-      
+          port: 22
           script: |
+            set -e
             cd /home/ubuntu/HeartfulHelp
             git pull
             source env/bin/activate
