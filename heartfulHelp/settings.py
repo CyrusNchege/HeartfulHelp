@@ -156,6 +156,11 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = 'dashboard'  # To be changed
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+
 """
 For the below, I thought I needed to add the following to the settings.py file:
 but instead I added the client ID and secret to the social applications in the admin panel
