@@ -59,7 +59,6 @@ def cause_delete(request, pk):
     FundraiseCause.objects.get(id=pk).delete()
     return redirect('causes_list')
 
-@login_required(login_url='login')
 def donation_create(request, pk):
     cause = FundraiseCause.objects.get(id=pk)
     if request.method == 'POST':
