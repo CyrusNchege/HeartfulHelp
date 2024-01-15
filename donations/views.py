@@ -17,10 +17,6 @@ def causes_list(request):
     causes = FundraiseCause.objects.all()
     return render(request, 'donations/causes_list.html', {'causes': causes})
 
-@login_required(login_url='login')
-def causes(request):
-    causes = FundraiseCause.objects.all()
-    return render(request, 'donations/causes.html', {'causes': causes})
 
 
 def cause_detail(request, pk):
