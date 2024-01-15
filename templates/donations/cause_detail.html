@@ -1,5 +1,12 @@
 
-{% extends 'base.html' %}
+{% if user.is_authenticated %}
+    {% include 'accounts/base.html' %}
+{% else %}
+    {% include 'base.html' %}
+{% endif %}
+
+{% load static%}
+
 
 {% block content %}
   <div class="container mt-5">
